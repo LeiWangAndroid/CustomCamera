@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="crop_frame_width_half">80dp</dimen>
+    <dimen name="crop_frame_height_half">100dp</dimen>
+</resources>

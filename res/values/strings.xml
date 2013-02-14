@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, PhotoFilterActivity!</string>
+    <string name="app_name">PhotoFilter</string>
+    
+    
+    <string name="main_camera_toast_txt">Receipt must be captured in full.\nImage must be clear and sharp.\nOne receipt at a time.</string>
+</resources>
