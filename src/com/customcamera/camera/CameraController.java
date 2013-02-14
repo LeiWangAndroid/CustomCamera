@@ -317,7 +317,6 @@ public class CameraController {
 		params.setPictureFormat(PixelFormat.JPEG);
 		params.setPreviewSize(cameraResolution.x, cameraResolution.y);
 
-		mHolder.setSizeFromLayout();
 //		params.setPreviewSize(480, 640);
 		if (CameraConstants.USE_CAMERA_AUTO_FLASH)
 			params.setFlashMode(Parameters.FLASH_MODE_AUTO);

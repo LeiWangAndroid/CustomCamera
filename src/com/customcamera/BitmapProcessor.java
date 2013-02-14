@@ -2,7 +2,6 @@ package com.customcamera;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import com.customcamera.R;
 
 public class BitmapProcessor {
 	private Bitmap _bitmap;

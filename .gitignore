@@ -1,3 +1,14 @@
 .DS_Store
 *.swp
 *.swo
+
+# generated files
+bin/
+gen/
+
+# Java class files
+*.class
+
+# built application files
+*.apk
+*.ap_
