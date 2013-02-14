@@ -50,6 +50,16 @@
             android:gravity="center"
             android:text="font/back"
             android:textStyle="bold" />
+        
+        <Button
+            android:id="@+id/flash_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Flash"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </RelativeLayout>

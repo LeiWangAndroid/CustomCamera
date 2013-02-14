@@ -5,12 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import com.customcamera.CameraActivity;
-import com.customcamera.PreviewActivity;
-import com.customcamera.utils.CameraConstants;
-import com.customcamera.utils.CameraUtils;
-import com.customcamera.utils.CameraWrapper;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,7 +26,13 @@ import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.customcamera.CameraActivity;
+import com.customcamera.PreviewActivity;
+import com.customcamera.utils.CameraConstants;
+import com.customcamera.utils.CameraUtils;
+import com.customcamera.utils.CameraWrapper;
 
 public class CameraController {
 
@@ -657,10 +657,14 @@ public class CameraController {
 		Camera.Parameters params = camera.getParameters();
 		if (on) {
 			params.setFlashMode(Parameters.FLASH_MODE_ON);
+			Toast.makeText(context, "AutoFlash has been turned on", Toast.LENGTH_SHORT).show();
 		}
 		else {
 			params.setFlashMode(Parameters.FLASH_MODE_OFF);
+			Toast.makeText(context, "AutoFlash has been turned off", Toast.LENGTH_SHORT).show();
 		}
+
+		camera.setParameters(params);
 	}
 
 }

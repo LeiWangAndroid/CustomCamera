@@ -29,7 +29,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 	private int categoryType;
 	private SurfaceHolder holder;
 	private SurfaceView previewView;
-	private Button mTakeBtn, mSwitchBtn;
+	private Button mTakeBtn, mSwitchBtn, mFlashBtn;
 
 	private boolean takingPhoto = false;
 	Uri imageFileUri;
@@ -60,6 +60,9 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 
 		mSwitchBtn = (Button) findViewById(R.id.switch_button);
 		mSwitchBtn.setOnClickListener(this);
+		
+		mFlashBtn = (Button) findViewById(R.id.flash_button);
+		mFlashBtn.setOnClickListener(this);
 
 		previewView = (SurfaceView) findViewById(R.id.preview);
 		holder = previewView.getHolder();
@@ -149,6 +152,15 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 					cameraController.restartPreview();
 					CameraController.getController().cameraOpen(holder);
 					CameraController.getController().startPreview(previewView);
+				}
+				catch (Exception e) {
+					Log.e("Error in surfaceCreated:", "camera controller problem");
+
+				}
+				break;
+			case R.id.flash_button:
+				try {
+					CameraController.getController().switchFlash(false);
 				}
 				catch (Exception e) {
 					Log.e("Error in surfaceCreated:", "camera controller problem");

@@ -26,13 +26,14 @@ public final class R {
     }
     public static final class id {
         public static final int back=0x7f070004;
-        public static final int button_camera=0x7f07000c;
-        public static final int button_from_phone=0x7f07000d;
+        public static final int button_camera=0x7f07000d;
+        public static final int button_from_phone=0x7f07000e;
         public static final int cameraImage=0x7f070001;
+        public static final int flash_button=0x7f07000a;
         public static final int frame=0x7f070005;
-        public static final int imageView=0x7f07000e;
-        public static final int linearLayout1=0x7f07000a;
-        public static final int linearLayout2=0x7f07000b;
+        public static final int imageView=0x7f07000f;
+        public static final int linearLayout1=0x7f07000b;
+        public static final int linearLayout2=0x7f07000c;
         public static final int ll_viewArea=0x7f070000;
         public static final int preview=0x7f070007;
         public static final int recapture_button=0x7f070002;
