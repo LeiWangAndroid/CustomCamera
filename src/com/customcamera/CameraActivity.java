@@ -18,8 +18,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-import com.customcamera.R;
+
 import com.customcamera.camera.CameraController;
 import com.customcamera.utils.CameraConstants;
 
@@ -29,6 +30,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 	private int categoryType;
 	private SurfaceHolder holder;
 	private SurfaceView previewView;
+	private RelativeLayout shootPhotoBar;
 	private Button mTakeBtn, mSwitchBtn, mFlashBtn;
 
 	private boolean takingPhoto = false;
@@ -68,6 +70,9 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 		holder = previewView.getHolder();
 		holder.addCallback(this);
 		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+		
+		shootPhotoBar = (RelativeLayout) findViewById(R.id.shootPhotoBar);
+		
 	}
 
 	@Override
@@ -76,7 +81,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 		Log.e("surfaceChanged:", "camera surfaceChanged");
 		try {
 			cameraController.cameraOpen(holder);
-			cameraController.startPreview(previewView);
+			cameraController.startPreview(previewView, shootPhotoBar);
 		}
 		catch (Exception e) {
 
@@ -151,7 +156,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback, 
 				try {
 					cameraController.restartPreview();
 					CameraController.getController().cameraOpen(holder);
-					CameraController.getController().startPreview(previewView);
+					CameraController.getController().startPreview(previewView, shootPhotoBar);
 				}
 				catch (Exception e) {
 					Log.e("Error in surfaceCreated:", "camera controller problem");

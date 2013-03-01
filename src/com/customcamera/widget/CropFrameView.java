@@ -1,6 +1,5 @@
 package com.customcamera.widget;
 
-import com.customcamera.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
+
+import com.customcamera.R;
 
 
 @SuppressLint("DrawAllocation")

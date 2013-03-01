@@ -25,7 +25,9 @@ import android.util.Log;
 import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.customcamera.CameraActivity;
@@ -240,10 +242,35 @@ public class CameraController {
 	public void startPreview(SurfaceView preview) {
 		if (camera != null) {
 			// if (!isFontCamera) {
-//			RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(cameraResolution.x, cameraResolution.y);
-//			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-//			layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-//			preview.setLayoutParams(layoutParams);
+			// RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(cameraResolution.x,
+			// cameraResolution.y);
+			// layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+			// layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
+			// preview.setLayoutParams(layoutParams);
+			// }
+			camera.startPreview();
+		}
+	}
+
+	/**
+	 * start camera preview
+	 */
+	public void startPreview(SurfaceView preview, RelativeLayout shootPhotoBar) {
+		if (camera != null) {
+			// if (!isFontCamera) {
+			WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+			Display display = manager.getDefaultDisplay();
+			screenResolution = new Point(display.getWidth(), display.getHeight());
+			Log.d("sdf", "display.getWidth():" + display.getWidth() + ": display.getHeight():" + display.getHeight());
+			float toolBarHeight = display.getWidth() - (float)display.getHeight() * (float)((float)cameraResolution.x / (float)cameraResolution.y);
+			Log.d("sdf", "cameraheight:" + (float)display.getWidth() * (float)((float)cameraResolution.x / (float)cameraResolution.y));
+			float toolBarWidth = display.getHeight();
+			Log.d("sdf", "toolBarHeight:" + toolBarHeight + ": toolBarWidth:" + toolBarWidth);
+			LayoutParams oldLayoutParams = shootPhotoBar.getLayoutParams();
+			oldLayoutParams.width = (int) toolBarHeight;
+			oldLayoutParams.height = (int) toolBarWidth;
+//			RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int) toolBarHeight, (int)toolBarWidth);
+			shootPhotoBar.setLayoutParams(oldLayoutParams);
 			// }
 			camera.startPreview();
 		}
@@ -317,7 +344,8 @@ public class CameraController {
 		params.setPictureFormat(PixelFormat.JPEG);
 		params.setPreviewSize(cameraResolution.x, cameraResolution.y);
 
-//		params.setPreviewSize(480, 640);
+		Log.d("sdf", "cameraResolution.x:" + cameraResolution.x + ": cameraResolution.y:" + cameraResolution.y);
+		// params.setPreviewSize(480, 640);
 		if (CameraConstants.USE_CAMERA_AUTO_FLASH)
 			params.setFlashMode(Parameters.FLASH_MODE_AUTO);
 
@@ -419,46 +447,46 @@ public class CameraController {
 	 *            resolution of phone screen
 	 * @return point (x,y) that contains best resolution
 	 */
-//	private Point findBestPreviewOrPictureSize(List<Size> availablePreviewSizes, Point screenResolution,
-//			boolean isPicture) {
-//		int bestX = 0;
-//		int bestY = 0;
-//		int diff = Integer.MAX_VALUE;
-//		if (availablePreviewSizes == null)
-//			return screenResolution;
-//		for (Size size : availablePreviewSizes) {
-//			int newX = 0;
-//			int newY = 0;
-//			try {
-//				newX = size.width;
-//				newY = size.height;
-//			}
-//			catch (NumberFormatException nfe) {
-//				Log.e("error finding preview", "number format exception for:" + newX + " " + newY);
-//				continue;
-//			}
-//			// if widest dimension is less than 480 we stop searching
-//			if (isPicture && Math.max(newX, newY) < 480) {
-//				break;
-//			}
-//			// we looking for size that is closest to screen resolution
-//			int newDiff = Math.abs(newX - screenResolution.x) + Math.abs(newY - screenResolution.y);
-//			if (newDiff == 0) {
-//				bestX = newX;
-//				bestY = newY;
-//				break;
-//			}
-//			else if (newDiff < diff) {
-//				bestX = newX;
-//				bestY = newY;
-//				diff = newDiff;
-//			}
-//		}
-//		if (bestX > 0 && bestY > 0) {
-//			return new Point(bestX, bestY);
-//		}
-//		return null;
-//	}
+	// private Point findBestPreviewOrPictureSize(List<Size> availablePreviewSizes, Point screenResolution,
+	// boolean isPicture) {
+	// int bestX = 0;
+	// int bestY = 0;
+	// int diff = Integer.MAX_VALUE;
+	// if (availablePreviewSizes == null)
+	// return screenResolution;
+	// for (Size size : availablePreviewSizes) {
+	// int newX = 0;
+	// int newY = 0;
+	// try {
+	// newX = size.width;
+	// newY = size.height;
+	// }
+	// catch (NumberFormatException nfe) {
+	// Log.e("error finding preview", "number format exception for:" + newX + " " + newY);
+	// continue;
+	// }
+	// // if widest dimension is less than 480 we stop searching
+	// if (isPicture && Math.max(newX, newY) < 480) {
+	// break;
+	// }
+	// // we looking for size that is closest to screen resolution
+	// int newDiff = Math.abs(newX - screenResolution.x) + Math.abs(newY - screenResolution.y);
+	// if (newDiff == 0) {
+	// bestX = newX;
+	// bestY = newY;
+	// break;
+	// }
+	// else if (newDiff < diff) {
+	// bestX = newX;
+	// bestY = newY;
+	// diff = newDiff;
+	// }
+	// }
+	// if (bestX > 0 && bestY > 0) {
+	// return new Point(bestX, bestY);
+	// }
+	// return null;
+	// }
 
 	/**
 	 * code from barcode scanner to find coordinates of rectangular frame drawn on preview surface

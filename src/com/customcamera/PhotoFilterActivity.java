@@ -10,7 +10,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.customcamera.R;
+
 import com.customcamera.utils.CameraConstants;
 
 public class PhotoFilterActivity extends Activity {
